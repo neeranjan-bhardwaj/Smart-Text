@@ -7,9 +7,11 @@ import GenerateContent from './AI';
 
 const page = () => {
   const {quill,quillRef}=useQuill({placeholder:"GO TO HELL"}); // Set quill 
-  const [Text,setText]=useState(''); // set input
-  const [Res,setRes]=useState<string|undefined>(); // set Response 
-  const [Loader,setLoader]=useState(false) //set loader page
+  const [Input,setInput]=useState<string>(''); // set input
+  const [Res,setRes]=useState<string>(); // set Response 
+  const [Loader,setLoader]=useState<boolean>(false) //set loader page
+  const [pause,setPause]=useState<boolean>(false)
+  let Written:string|undefined
 //  seating the Res to show in textEditor 
   useEffect(()=>{
     // seating Res to show
@@ -19,18 +21,22 @@ const page = () => {
     // Default text Editor to edit text if there no Res
     if(quill){
     quill.on("text-change",()=>{
-      const text= quill.getText()
-      console.log(text)
+      Written= quill.getText()
+      console.log(Written)
     })}
   },[quill,Res])
 // Getting Res on click of button
   const Generate=async()=>{
-    const Req:string=Text
-    console.log(Req)
-    const Response:string|undefined= await GenerateContent(Req)
     setLoader(!Loader);
-    setText('')
-    // setRes(Response);
+    const Response:string= await GenerateContent(Input,Written)
+    setInput('')
+    setRes(Response);
+  }
+
+  const Speech=()=>{
+    const Speck=new SpeechSynthesisUtterance(Res)
+    speechSynthesis.speak(Speck)
+    pause?speechSynthesis.pause():speechSynthesis.resume()
   }
 
   return (
@@ -42,8 +48,9 @@ const page = () => {
     <main>
       <div className='absolute flex gap-5 bg-white rounded-2xl bottom-10 left-1/3 w-80 h-10 '>
         <img src="" alt="" />
-        <textarea value={Text} placeholder='Generate content' onChange={(e)=>setText(e.target.value)}  />
+        <textarea value={Input} placeholder='Generate content' onChange={(e)=>setInput(e.target.value)} className='text-black' />
         <button onClick={Generate} className='text-black '>Generate</button>
+        <button onClick={Speech} className='text-black'>Click</button>
       </div>
       <div ref={quillRef} className='!h-96'></div>
     </main>
