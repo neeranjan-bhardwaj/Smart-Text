@@ -6,7 +6,7 @@ export default async function GenerateContent(Req:string,Text?:string):Promise<s
     try{
     const Prompt:string=`Act as a Pro Script Writer and ${Text?'Improve the script':''}`
     const Gemini=new GoogleGenerativeAI(process.env.API||"")
-    const Model=await Gemini.getGenerativeModel({model:"gemini-1.5-flash"})
+    const Model=await Gemini.getGenerativeModel({model:"gemini-1.5-pro"})
 
     const History=Model.startChat({
         history:[{
