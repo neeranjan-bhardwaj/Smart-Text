@@ -11,7 +11,7 @@ export default async function GenerateContent(Req:string,Text?:string):Promise<s
     const History=Model.startChat({
         history:[{
             role:'user',
-            parts:[{text:Prompt}]
+            parts:[{text:Prompt,}]
         }]
     })
 
