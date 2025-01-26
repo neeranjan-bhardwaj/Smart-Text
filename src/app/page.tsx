@@ -1,17 +1,68 @@
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import React from 'react'
+"use client"
+
+import React, { useEffect, useState } from 'react'
+import 'quill/dist/quill.snow.css';
+import { useQuill } from 'react-quilljs';
+import GenerateContent from './AI';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 const page = () => {
+  const {quill,quillRef}=useQuill({placeholder:"GO TO HELL"}); // Set quill 
+  const [input,setInput]=useState<string>(''); // set input
+  const [Res,setRes]=useState<string>(); // set Response 
+  const [Loader,setLoader]=useState<boolean>(false) //set loader page
+  let Written:string|undefined
+//  seating the Res to show in textEditor 
+  useEffect(()=>{
+    // seating Res to show
+    if(quill&&Res){
+      console.log("I am here!")
+      quill.setText(Res)}
+    // Default text Editor to edit text if there no Res
+    if(quill){
+    quill.on("text-change",()=>{
+      Written= quill.getText()
+      console.log(Written)
+    })}
+  },[quill,Res])
+// Getting Res on click of button
+  const Generate=async()=>{
+    setLoader(!Loader);
+    const Response:string= await GenerateContent(input,Written)
+    setInput('')
+    setRes(Response);
+  }
+
   return (
     <>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5000ca" fill-opacity="1" d="M0,192L40,213.3C80,235,160,277,240,293.3C320,309,400,299,480,272C560,245,640,203,720,160C800,117,880,75,960,64C1040,53,1120,75,1200,101.3C1280,128,1360,160,1400,176L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
-    <div className=''>
-        <h1 className=''>Welcome To SmartAI</h1>
-        <h1 className=''></h1>
-        <Button><Link href={''}></Link></Button>
-        <Button><Link href={''}></Link></Button>
+    
+    <nav className="bg-black text-white p-4 flex justify-between items-center">
+      <div className="text-lg font-bold">Smart-Text</div>
+      <div className="flex space-x-4">
+        <Link href="https://github.com/neeranjan-bhardwaj/Smart-Text">
+          Documents
+        </Link>
+      </div>
+    </nav>
+    <main className='h-[35rem] w-full mt-4'>
+    <div ref={quillRef} className='!h-full mt-5'></div>
+    <div className="p-4 flex gap-5 justify-center items-center absolute bottom-5">
+      <input
+        type="text"
+        placeholder="Enter text here..."
+        className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        onClick={Generate}
+      >
+        Generate
+      </button>
     </div>
+    </main>
     </>
   )
 }
