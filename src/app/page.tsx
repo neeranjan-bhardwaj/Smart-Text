@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 
 const page = () => {
-  const {quill,quillRef}=useQuill({placeholder:"GO TO HELL"}); // Set quill 
+  const {quill,quillRef}=useQuill({placeholder:"Write You script."}); // Set quill 
   const [input,setInput]=useState<string>(''); // set input
   const [Res,setRes]=useState<string>(); // set Response 
   const [Loader,setLoader]=useState<boolean>(false) //set loader page
@@ -30,9 +30,10 @@ const page = () => {
   },[quill,Res])
 // Getting Res on click of button
   const Generate=async()=>{
-    setLoader(!Loader);
+    setLoader(true);
     const Response:string= await GenerateContent(input,Written)
     setInput('')
+    setLoader(false);
     setRes(Response);
   }
 

@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Smart-Text Editor
+The Smart-Text Editor is a feature that allows you to create and edit text files with ease
 
+![](./public/Logo.svg)
+
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Tech Stack](#Tech-Stack)
+- [Preview](#Proview)
+- [Getting Started](#Getting-Started)
+- - [Prerequisites](#Prerequisites)
+- - [Installation](#Installation)
+- [Usage](#Usage)
+- [License](#license)
+- [Contact](#contact)
+
+## About the Project
+Smart-Text is an AI-powered text editor built for content creators, bloggers, and writers. It leverages Google Gemini for intelligent text suggestions and enhancements while providing a seamless user experience with Next.js, TypeScript, and Tailwind CSS. Whether you want to draft, improve, or create stories, Smart-Text simplifies content creation.
+
+## Features
+- AI-assisted writing suggestions for improved grammar and clarity.
+- AI-powered story generation based on user prompts.
+- Real-time text improvements with customization options.
+- Intuitive and distraction-free editing interface.
+- Auto-save and export functionality.
+
+## Tech Stack
+#### Front-End :
+- Next.js
+- TypeScript
+- Tailwind CSS
+- React.js
+- ShadCN-UI
+#### Back-End :
+- Next.js
+- Google Gemini API
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js
+- Next.js
+- TypeScript
+- Tailwind CSS
+- React.js
+- npm
+- A code editor of your choice
+- A Google account for Google Gemini API
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installation
+1. Clone the repository using `git clone https://github.com/your-username/Smart-Text
+2. Install the required packages using `npm install`
+3. Set up your Google Gemini API credentials in the `.env` file
+4. Run the application using `npm run dev`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Usage
+- Open the Smart-Text editor.
+- Begin writing your content or choose from AI suggestions.
+- Use the "Improve Text" feature to enhance grammar and readability.
+- Generate creative stories by providing a brief prompt to the AI.
+- Save or export your work directly from the editor.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+# Contact
+Feel free to reach out to me for any questions or feedback. I
+- Developer: [Neeranjan Bhardwaj]() 
+- Email: neeranjan5116@Gmail.com
+- Portfolio:  [portfolio]() 
+- LinkedIn: [LinkedIn]() 
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
